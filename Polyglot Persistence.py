@@ -219,8 +219,8 @@ try:
     n_employees = len(df['EMPLOYEE_ID'].unique())
     colors = cm.get_cmap('tab20', n_employees)  
     plt.figure(figsize=(10, 6))
-    sns.barplot(x="PROGRESS", y="GOAL", data=df, hue="EMPLOYEE_ID", dodge=False, ci=None)
-    sns.barplot(x="PROGRESS", y="GOAL", data=df, hue="EMPLOYEE_ID", dodge=False, ci=None,
+    sns.barplot(x="PROGRESS", y="GOAL", data=df, hue="EMPLOYEE_ID", dodge=False, errorbar=None)
+    sns.barplot(x="PROGRESS", y="GOAL", data=df, hue="EMPLOYEE_ID", dodge=False, errorbar=None,
             palette=[colors(i) for i in np.linspace(0, 1, n_employees)])  # Apply distinct colors
 
     plt.title('Progress Towards Performance Goals by Goal')
