@@ -14,7 +14,6 @@ database = 'BEMM459_GroupW'
 username = 'GroupW'  
 password = 'YhdF813+Kr' 
 
-# serverstring = ('DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password+';TrustServerCertificate=yes;Encrypt=no;')
 serverstring = 'DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password+';TrustServerCertificate=yes;Encrypt=no;' 
 
 
