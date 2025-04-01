@@ -1,5 +1,6 @@
 #mongodb queries
 import pymongo
+from datetime import datetime
 
 mongo_client = pymongo.MongoClient("mongodb://localhost:27017/")
 mongo_db = mongo_client['WConsulting']
@@ -7,7 +8,6 @@ employee_feedback_col = mongo_db['employee_feedback']
 offboarding_review_col = mongo_db['offboarding_review']
 employee_development_col = mongo_db['employee_personal_development']
 reprimands_col = mongo_db['reprimands']
-
 
 try:
     
@@ -33,6 +33,21 @@ try:
     mydoc = reprimands_col.find().sort("REPRIMAND_DATE", -1)
     for x in mydoc:
         print(x)
+
+    # Create a new feedback entry
+
+# Define the new feedback
+    new_feedback = {
+        "FEEDBACK_DATE": datetime.now().strftime("%Y-%m-%d"),  # Current date in YYYY-MM-DD format
+     "FEEDBACK_TEXT": "Employee has shown great progress in decision-making and has taken on more responsibility in managing projects."
+    }
+
+    # Update the feedback list for Employee 3
+    employee_feedback_col.update_one(
+        {"EMPLOYEE_ID": 3},  
+        {"$push": {"FEEDBACK": new_feedback}}      )
+
+    print("New feedback entry added for Employee 3.")
 
 
     # Identifying employees with more serious remprimands where HR had to be involved 
@@ -62,8 +77,6 @@ try:
     # Deleting
     # Removing employee 10 from offboarding review as deemd valuable
     offboarding_review_col.delete_one({"EMPLOYEE_ID": 10})
-
-
 
 
 except Exception as e:
